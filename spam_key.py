@@ -1,12 +1,17 @@
 from pynput.keyboard import Key, Controller, Listener 
 import time
 import threading
+import gui
+from tkinter import Label
 
 # pyinput is a library that allows you to control and monitor input devices. 
 # In this case, we are using it to control the keyboard. It runs on the same lever as the 
 # Windows API, so it can be used to simulate key presses and releases reliably. 
 # Good for game scripting macros :) pyautogui is trash lol
 
+
+
+gui.root.mainloop()
 
 keyboard = Controller()
 time.sleep(3)
