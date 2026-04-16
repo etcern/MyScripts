@@ -7,7 +7,6 @@ import threading
 # Windows API, so it can be used to simulate key presses and releases reliably. 
 # Good for game scripting macros :) pyautogui is trash lol
 
-#Git commit 1 test
 
 keyboard = Controller()
 time.sleep(3)
