@@ -1,3 +1,4 @@
+import threading
 import tkinter as tk
 from sys import exit
 
@@ -11,10 +12,11 @@ tk.Label(root, text="").pack()
 tk.Label(root, text="").pack()
 tk.Label(root, text="").pack()
 tk.Label(root, text="Press F8 to start / stop the macro").pack()
-tk.Label(root, text="Current Toggle state: " + str(False)).pack()
-
+status_label = tk.Label(root, text="Current Toggle state: " + str(False))
+status_label.pack()
 def on_closing():
         quit()
 
 root.protocol("WM_DELETE_WINDOW", on_closing)
-root.mainloop()
+def run_gui():
+    threading.Thread(target=root.mainloop, daemon=True).start()

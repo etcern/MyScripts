@@ -10,9 +10,6 @@ from tkinter import Label
 # Good for game scripting macros :) pyautogui is trash lol
 
 
-
-gui.root.mainloop()
-
 keyboard = Controller()
 time.sleep(3)
 
@@ -26,15 +23,16 @@ def pressKey():
             time.sleep(0.05)
             keyboard.release(Key.shift)
             time.sleep(0.05)
+            
         else:
             time.sleep(0.1)
 
 def on_press(key):
     global alive
-
-    # Toggle with key  (F8 in this case to start/stop the macro)
-    if key == Key.f8:
+# Toggle with key  (F8 in this case to start/stop the macro)
+    if key == Key.f6:
         alive = not alive
+        gui.status_label.config(text = "Current Toggle state: " + str(alive))
 
 
 # Threading that make sma programmo run in backgrou8ndo  :D daemon is like a background thread that will 
@@ -48,3 +46,10 @@ macro_thread.start()
 # Listener is a class from the pynput library that allows you to listen for keyboard events before the thread function is executed.
 with Listener(on_press=on_press) as listener:
     listener.join()
+
+
+# Running the GUI in a separate thread allows the main thread to 
+# handle the keyboard listener and macro logic without being blocked 
+# by the GUI's event loop. This way, the GUI remains responsive while the 
+# macro is running in the background.
+gui.run_gui()
